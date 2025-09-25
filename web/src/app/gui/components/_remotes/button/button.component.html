@@ -1,0 +1,19 @@
+
+ <button *ngIf="routerLink"
+ 	[class]="type === 'button' ? 'default' : 'submit'" 
+ 	[type]="type" 
+ 	[disabled]="isDisabled"
+ 	[routerLink]="routerLink"
+ 	
+>{{ name }}</button>
+
+<button *ngIf="!routerLink"
+ 	[class]="type === 'button' ? 'default' : 'submit'" 
+ 	[type]="type" 
+ 	[disabled]="isDisabled"
+ 	(click)="onClick($event)"
+ 	>{{ name }}</button>
+
+
+ <!-- 	{{ disabled$ | async }}
+ 	disabled$ -->
