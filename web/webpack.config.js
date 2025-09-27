@@ -45,7 +45,7 @@ module.exports = {
       exposes: {
         './GuiModule': './src/app/gui/gui.module.ts',
         './Component': './src/app/gui/gui.component.ts',
-        './Exposed': './src/app/gui/_exposed.ts',
+        './Exposed': './src/app/gui/_exposed/index.ts',
       },
       shared: share({
         "@angular/core": { 

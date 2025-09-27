@@ -6,7 +6,7 @@
   },
   "files": [
     "src/main.ts",
-    "src/app/gui/_exposed.ts"
+    "src/app/gui/_exposed/index.ts"
   ],
   "include": [
     "src/**/*.d.ts",
