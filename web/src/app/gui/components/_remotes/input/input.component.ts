@@ -19,7 +19,9 @@ export class InputComponent implements OnInit {
   };
   
   @Input() set value(externalValue: string | number | null) {
-    this.selectedValue = externalValue || null
+    if (this.selectedValue !== externalValue) {
+      this.selectedValue = externalValue || null
+    }
   };
   
   @Input() set disabled(val: boolean) {
@@ -44,4 +46,4 @@ export class InputComponent implements OnInit {
   onValueChange(value: string | number | null) {
     this.valueChange.emit(value);
   }
-}
+} 

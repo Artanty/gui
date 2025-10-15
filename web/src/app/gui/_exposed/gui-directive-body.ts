@@ -39,11 +39,10 @@ export class GuiDirectiveBody {
   } 
 
   test() {
-    console.log('_findCustomElement()')
+    console.log('GUI DIRECTIVE BODY HEALTHCHECK')
     return 'test test' 
   }
   public async _findCustomElement() {
-    console.log('_findCustomElement()')
     try {
       const elementKey = buildCustomElName(this.element);
       const customElementName = await getCustomElement(elementKey);

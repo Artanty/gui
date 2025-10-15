@@ -27,7 +27,7 @@ export const buildCustomElName = (element: FormHTMLElement): string => {
   const tag = element.tagName;
   const typeAttr = element.getAttribute('type');
   const formElementType = element.type;
-  const type = (formElementType || typeAttr)?.toUpperCase().replace('-', '_');
+  const type = (formElementType || typeAttr)?.toUpperCase().replace(/-/g, '_');
 
   return `${tag}__${type}`;
 }

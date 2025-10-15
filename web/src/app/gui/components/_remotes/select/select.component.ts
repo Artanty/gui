@@ -25,7 +25,11 @@ export class SelectComponent implements OnInit {
   @Input() label: string = '';
   @Input() name: string = 'select';
   @Input() inputId: string = 'select';
-  @Input() options: SelectOption[] = [];
+  private _options: SelectOption[] = [];
+  @Input() set options(data: SelectOption[]) {
+    this._options = data
+    this.resolvedOptions = data
+  };
   @Input() options$?: Observable<SelectOption[]>;
   @Input() set value(externalValue: string | number | null) {
     // console.log('vselect value changed: ' + externalValue)
@@ -46,7 +50,6 @@ export class SelectComponent implements OnInit {
   error: boolean = false;
 
   ngOnInit() {
-    
     this.loadOptions();
   }
 
@@ -66,7 +69,7 @@ export class SelectComponent implements OnInit {
         this.loading = false;
       });
     } else {
-      this.resolvedOptions = this.options;
+      this.resolvedOptions = this._options;
     }
   }
 

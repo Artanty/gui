@@ -11,6 +11,7 @@ import { ToggleComponent } from './components/_remotes/toggle/toggle.component';
 import { InputComponent } from './components/_remotes/input/input.component';
 import { ButtonComponent } from './components/_remotes/button/button.component';
 import { InputColorComponent } from './components/_remotes/input-color/input-color.component';
+import { DropdownComponent } from './components/_remotes/dropdown/dropdown.component';
 
 
 @NgModule({
@@ -46,6 +47,8 @@ export class GuiModule {
     { component: InputComponent, name: 'InputComponent' },
     { component: ButtonComponent, name: 'ButtonComponent' },
     { component: InputColorComponent, name: 'InputColorComponent' },
+    { component: DropdownComponent, name: 'DropdownComponent' },
+    
     
   ];
 
