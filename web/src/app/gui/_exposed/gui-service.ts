@@ -11,8 +11,8 @@ export async function getCustomElement(elementName: string): Promise<string> {
 				const remoteName = getRemoteNameFromCustomElementName(customElementName)
 				if (!isRemoteLoaded(remoteName)) throw new Error('remote ' + remoteName + ' is not loaded');
 				if (customElementName === 'au-user-access-list') {
-					dd('au module:')
-					dd((window as any)[remoteName])
+					// dd('au module:')
+					// dd((window as any)[remoteName])
 				}
 				const isRegistered = customElements.get(customElementName)
 				if (!isRegistered) throw new Error(`${customElementName} is not registered`);
@@ -28,7 +28,6 @@ export async function getCustomElement(elementName: string): Promise<string> {
 }
 
 export const isRemoteLoaded = (remoteName: string) => {
-	console.log(window)
 	const container = (window as any)[remoteName];
 	return !!container;
 }

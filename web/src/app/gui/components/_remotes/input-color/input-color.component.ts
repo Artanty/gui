@@ -19,7 +19,9 @@ export class InputColorComponent implements OnInit {
   };
   
   @Input() set value(externalValue: string | number | null) {
-    this.selectedValue = externalValue || null
+    if (this.selectedValue !== externalValue) {
+      this.selectedValue = externalValue || null
+    }
   };
   
   @Input() set disabled(val: boolean) {

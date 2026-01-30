@@ -18,7 +18,7 @@ export class ToggleComponent implements OnInit, AfterViewInit {
   @Input() options: string[] = [];
   
   @Input() set value(externalValue: string | number | null) {
-    console.log(Boolean(externalValue))
+    // console.log(Boolean(externalValue))
     this.selectedValue = Boolean(externalValue)
     this.onValueChange(Boolean(externalValue))
   };

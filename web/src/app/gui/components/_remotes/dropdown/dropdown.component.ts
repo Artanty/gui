@@ -1,12 +1,14 @@
-import { Component, Input, Output, EventEmitter, HostListener, Inject, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener, Inject, ElementRef, OnInit } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { ICON__OPTIONS } from '../../../services/constants';
+import { catchError, Observable, of } from 'rxjs';
 
 export interface DropdownItem {
   id: string;
   name: string;
   icon?: string;
   link?: string;
+  
 }
 
 @Component({
@@ -16,26 +18,56 @@ export interface DropdownItem {
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss']
 })
-export class DropdownComponent {
-  @Input() items: DropdownItem[] = [
-    // { id: '1', name: "Profile", icon: "fa fa-user" },
-    // { id: '2', name: "Settings", icon: "fa fa-cog" },
-    // { id: '3', name: "Messages", icon: "fa fa-envelope" },
-    // { id: '4', name: "Help", icon: "fa fa-question-circle" },
-    // { id: '5', name: "Logout", icon: "fa fa-sign-out" }
-  ];
+export class DropdownComponent implements OnInit {
+  // @Input() items: DropdownItem[] = [
+  //   // { id: '1', name: "Profile", icon: "fa fa-user" },
+  //   // { id: '2', name: "Settings", icon: "fa fa-cog" },
+  //   // { id: '3', name: "Messages", icon: "fa fa-envelope" },
+  //   // { id: '4', name: "Help", icon: "fa fa-question-circle" },
+  //   // { id: '5', name: "Logout", icon: "fa fa-sign-out" }
+  // ];
+  @Input() set items(data: DropdownItem[]) {
+    this.resolvedItems = data;
+  }
+  @Input() items$?: Observable<DropdownItem[]>;
 
   @Input() buttonText: string = ''; // ICON__OPTIONS
   @Input() buttonIcon: string = '';
   
   @Output() itemSelected = new EventEmitter<DropdownItem>();
 
+  public resolvedItems: DropdownItem[] = [];
   isOpen = false;
+
+  loading: boolean = false;
+  error: boolean = false;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private elementRef: ElementRef
   ) {}
+
+  ngOnInit() {
+    this.loadOptions();
+  }
+
+  private loadOptions() {
+    if (this.items$) {
+      this.loading = true;
+      this.error = false;
+
+      this.items$.pipe(
+        catchError(() => {
+          this.error = true;
+          this.loading = false;
+          return of([]);
+        })
+      ).subscribe((items: DropdownItem[]) => {
+        this.resolvedItems = items;
+        this.loading = false;
+      });
+    }
+  }
 
   toggleDropdown(event: Event) {
     event.preventDefault();

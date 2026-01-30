@@ -7,7 +7,7 @@
   </summary>
   
   <ul *ngIf="isOpen" [style.display]="isOpen ? 'block' : 'none'">
-    <li *ngFor="let item of items">
+    <li *ngFor="let item of resolvedItems">
       <a href="#" (click)="onItemClick(item, $event)">
         <i *ngIf="item.icon" [class]="item.icon"></i>
         {{ item.name }}

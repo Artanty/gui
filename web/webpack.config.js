@@ -13,7 +13,7 @@ module.exports = {
   output: {
     uniqueName: "gui",
     publicPath: "http://localhost:4209/", // Use explicit URL instead of 'auto'
-    chunkLoadingGlobal: 'webpackJsonp_au', // Add unique chunk loading global
+    chunkLoadingGlobal: 'webpackJsonp_gui', // Add unique chunk loading global
     scriptType: 'text/javascript'
   },
   optimization: {
